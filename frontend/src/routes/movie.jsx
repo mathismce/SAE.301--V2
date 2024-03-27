@@ -17,7 +17,7 @@ export default function Movie() {
   let cards = data.map((card) => {
     // console.log(index);
     return (
-      <li key={card.id}>
+      <li className='list-none' key={card.id}>
         <CardMovie
           name={card.name}
           urlImage={card.urlImage}
@@ -26,7 +26,7 @@ export default function Movie() {
     );
   });
   return (
-    <div>
+    <div className='flex'>
       {cards}
     </div>
   )

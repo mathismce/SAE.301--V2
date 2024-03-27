@@ -5,6 +5,7 @@ export default {
   theme: {
     extend: {
       colors:{
+        "bg-secondary" : "var(--black)",
         "button" : "var(--button-bg)",
         "button-secondary" : "var(--button-bg-secondary)",
         "button-txt" : "var(--button-text)",
@@ -15,7 +16,8 @@ export default {
         "search-bar" : "var(--secondary-gray)",
         "search-bar-focus" : "var(--primary-yellow)",
         "search-bar-bg-focus" : "var(--primary-gray)",
-        
+        "nav-bar-text" : "var(--tertiary-gray)",
+        "nav-bar-text-focus" : "var(--primary-white)",
 
             }
     },

@@ -10,8 +10,9 @@
         --secondary-yellow: #D09E0A;
         --primary-gray: #2F2F2F;
         --secondary-gray: #3C3C3D;
-        --black: #000000;
-        --primary-white: #ffffff;
+        --tertiary-gray: #7B7F8D ; 
+        --black: #121212;
+        --primary-white: #e0e0e7;
         --secondary-white : #DEDEDE;
 
         --button-bg: var(--primary-yellow);

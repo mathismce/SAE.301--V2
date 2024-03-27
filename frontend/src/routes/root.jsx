@@ -5,7 +5,7 @@ export default function Root() {
 
   return (
     <>
-      <section>
+      <section className='flex'>
         <NavBar/>
         <Outlet />
       </section>
