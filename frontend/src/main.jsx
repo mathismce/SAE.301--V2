@@ -7,6 +7,8 @@ import About from './routes/about.jsx';
 import Store, {loader as StoreLoader} from './routes/store.jsx';
 import Movie, {loader as MovieLoader} from './routes/movie.jsx';
 import OurTeams, {loader as OurTeamsLoader} from './routes/ourteams.jsx';
+import Type, {loader as TypeLoader} from './routes/type.jsx';
+import Series, {loader as SeriesLoader} from './routes/series.jsx';
 import ErrorPage from './ui/ErrorPage'
 
 import { Suspense } from 'react';
@@ -36,10 +38,22 @@ const router = createBrowserRouter([
           loader: OurTeamsLoader,
         },
         {
+          path: '/type/films',
+          element: <Type />,
+          loader: TypeLoader,
+          
+        },
+        {
+          path: '/type/series',
+          element: <Series />,
+          loader: SeriesLoader,
+          
+        },
+        {
           path: '/movie',
           element: <Movie />,
           loader: MovieLoader,
-},
+        },
     ]
   },
   {

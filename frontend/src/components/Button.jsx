@@ -20,7 +20,7 @@ const button = cva(base, {
         "flex",
         "items-center",
         "gap-2",
-        "w-fit"
+        "w-52"
       ],
       secondary: [
         "bg-button-secondary",

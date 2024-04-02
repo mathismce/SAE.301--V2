@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\Movie;
 use App\Entity\Category;
 use App\Repository\MovieRepository;
+use App\Entity\Type;
 
 class ApiController extends AbstractController
 {
@@ -28,11 +29,22 @@ class ApiController extends AbstractController
     $response = new JsonResponse( $data );
     return $response;
     }
+    
 
     #[Route('/api/category/{id}', name: 'app_api_category')]
     public function readCategory(Category $cat, SerializerInterface $serializer ): Response
     {
     $data = $serializer->normalize($cat, null, ['groups' => 'json_category']);
+    $response = new JsonResponse( $data );
+    return $response;
+    }
+
+
+    #[Route('/api/movie/type/{id}', name: 'app_api_type')]
+    public function readType(Type $type, SerializerInterface $serializer, MovieRepository $movieRepository): Response
+    {
+    $movies = $movieRepository->findBy(['type' => $type]);
+    $data = $serializer->normalize($movies, null, ['groups' => 'json_movie']);
     $response = new JsonResponse( $data );
     return $response;
     }

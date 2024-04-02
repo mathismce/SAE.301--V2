@@ -21,4 +21,9 @@
         --button-bg-secondary-hover : var(--secondary-white) ;
         --button-text: var(--black)
     }
+
+    html, body, #root {
+        height: 100%;
+        margin: 0;
+      }
 }

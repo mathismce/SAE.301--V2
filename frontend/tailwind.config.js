@@ -5,6 +5,7 @@ export default {
   theme: {
     extend: {
       colors:{
+        "bg-primary" : "var(--primary-gray)",
         "bg-secondary" : "var(--black)",
         "button" : "var(--button-bg)",
         "button-secondary" : "var(--button-bg-secondary)",
