@@ -10,6 +10,7 @@ import OurTeams, {loader as OurTeamsLoader} from './routes/ourteams.jsx';
 import Type, {loader as TypeLoader} from './routes/films.jsx';
 import Series, {loader as SeriesLoader} from './routes/series.jsx';
 import SearchContent, {loader as SearchContentLoader} from './routes/searchContent.jsx';
+import Login from './routes/login.jsx';
 
 import ErrorPage from './ui/ErrorPage'
 
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
           path: '/search/:searchTerm',
           element: <SearchContent />,
           loader: SearchContentLoader,
+        },
+        {
+          path: '/login',
+          element: <Login />
         },
     ]
   },

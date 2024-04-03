@@ -11,7 +11,15 @@ export default function SearchContent() {
     const data = useLoaderData();
     console.log(data)
 
-    const categoryCards = data.map((card) => (
+    if (!data) {
+        return <div>No results found</div>;
+    }
+
+    if (data.length === 0) {
+        return <div className='text-red-500'>No results found</div>;
+    }
+
+    const Cards = data.map((card) => (
         <li className='list-none' key={card.id}>
             <CardMovie
                 name={card.name}
@@ -24,7 +32,7 @@ export default function SearchContent() {
     return (
         <div>
             <ul className='flex gap-4'>
-                {categoryCards}
+                {Cards}
             </ul>
         </div>
     );

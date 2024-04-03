@@ -12,11 +12,8 @@ export default function SearchBar() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Vous pouvez appeler votre fonction fetchMovieBySearch ici en passant searchTerm
-        console.log('Recherche soumise : ', searchTerm);
-        // Réinitialiser la valeur du champ de recherche après la soumission
         navigate(`/search/${searchTerm}`);
-        setSearchTerm('');
+
     };
 
     return (
