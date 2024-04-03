@@ -12,6 +12,12 @@ export async function fetchMovieByType(typeId) {
     return data; 
 }
 
+export async function fetchMovieBySearch(Search) {
+    let answer = await fetch(`http://localhost:8080/api/searchContent?search=${Search}`);
+    let data = await answer.json();
+    return data; 
+}
+
 
 export async function fetchOurTeams(teamName){
     await fakeNetwork();

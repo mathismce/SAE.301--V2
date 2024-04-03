@@ -1,16 +1,14 @@
-import { fetchMovieByType } from '../lib/loaders';
+import { fetchApiMovie } from '../lib/loaders';
 import CardMovie from '../ui/CardMovie/Card';
 import { useLoaderData } from 'react-router-dom';
 
 export async function loader() {
-    let movieByTypeData = await fetchMovieByType(1);
-    return movieByTypeData;
+    let movieData = await fetchApiMovie();
+    return movieData;
 }
 
-export default function Type() {
+export default function Accueil() {
     const data = useLoaderData();
-    console.log(data)
-    
 
     let categories = [];
     data.forEach(card => {
@@ -44,9 +42,8 @@ export default function Type() {
     });
 
     return (
-        <div className='p-4 flex flex-col gap-6'>
+        <div className='p-4 flex flex-col gap-12'>
             {categoryElements}
         </div>
     );
-
 }

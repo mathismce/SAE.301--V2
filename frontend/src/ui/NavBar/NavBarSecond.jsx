@@ -11,12 +11,8 @@ export default function NavBarSecond({category}) {
 
     <nav className="flex 
      bg-bg-primary gap-4 justify-between shadow-dark-mild p-6">
-      
-
       <SearchBar></SearchBar>
       <Button className="w-fit" intent="primary" size="small">Passer Premium</Button>
-
-
 
 
     </nav>

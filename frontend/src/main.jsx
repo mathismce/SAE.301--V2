@@ -5,10 +5,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from './routes/root.jsx';
 import About from './routes/about.jsx';
 import Store, {loader as StoreLoader} from './routes/store.jsx';
-import Movie, {loader as MovieLoader} from './routes/movie.jsx';
+import Movie, {loader as MovieLoader} from './routes/accueil.jsx';
 import OurTeams, {loader as OurTeamsLoader} from './routes/ourteams.jsx';
-import Type, {loader as TypeLoader} from './routes/type.jsx';
+import Type, {loader as TypeLoader} from './routes/films.jsx';
 import Series, {loader as SeriesLoader} from './routes/series.jsx';
+import SearchContent, {loader as SearchContentLoader} from './routes/searchContent.jsx';
+
 import ErrorPage from './ui/ErrorPage'
 
 import { Suspense } from 'react';
@@ -53,6 +55,11 @@ const router = createBrowserRouter([
           path: '/movie',
           element: <Movie />,
           loader: MovieLoader,
+        },
+        {
+          path: '/search/:searchTerm',
+          element: <SearchContent />,
+          loader: SearchContentLoader,
         },
     ]
   },

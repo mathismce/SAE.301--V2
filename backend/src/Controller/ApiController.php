@@ -11,6 +11,7 @@ use App\Entity\Movie;
 use App\Entity\Category;
 use App\Repository\MovieRepository;
 use App\Entity\Type;
+use Symfony\Component\HttpFoundation\Request;
 
 class ApiController extends AbstractController
 {
@@ -22,33 +23,43 @@ class ApiController extends AbstractController
     //     ]);
     // }
 
-    #[Route('/api/movie', name: 'app_api_movie')]
-    public function readMovie(SerializerInterface $serializer, MovieRepository $movieRepository ): Response
+    #[Route('/api/movie', name: 'app_api_movie', methods:['GET'])]
+    public function readMovie(SerializerInterface $serializer, MovieRepository $movieRepository): Response
     {
-    $data = $serializer->normalize($movieRepository->findAll(), null, ['groups' => 'json_movie']);
-    $response = new JsonResponse( $data );
-    return $response;
-    }
-    
-
-    #[Route('/api/category/{id}', name: 'app_api_category')]
-    public function readCategory(Category $cat, SerializerInterface $serializer ): Response
-    {
-    $data = $serializer->normalize($cat, null, ['groups' => 'json_category']);
-    $response = new JsonResponse( $data );
-    return $response;
+        $data = $serializer->normalize($movieRepository->findAll(), null, ['groups' => 'json_movie']);
+        $response = new JsonResponse($data);
+        return $response;
     }
 
 
-    #[Route('/api/movie/type/{id}', name: 'app_api_type')]
+    #[Route('/api/category/{id}', name: 'app_api_category', methods:['GET'])]
+    public function readCategory(Category $cat, SerializerInterface $serializer): Response
+    {
+        $data = $serializer->normalize($cat, null, ['groups' => 'json_category']);
+        $response = new JsonResponse($data);
+        return $response;
+    }
+
+
+    #[Route('/api/movie/type/{id}', name: 'app_api_type', methods:['GET'])]
     public function readType(Type $type, SerializerInterface $serializer, MovieRepository $movieRepository): Response
     {
-    $movies = $movieRepository->findBy(['type' => $type]);
-    $data = $serializer->normalize($movies, null, ['groups' => 'json_movie']);
-    $response = new JsonResponse( $data );
-    return $response;
+        $movies = $movieRepository->findBy(['type' => $type]);
+        $data = $serializer->normalize($movies, null, ['groups' => 'json_movie']);
+        $response = new JsonResponse($data);
+        return $response;
     }
 
 
+    #[Route('/api/searchContent', name: 'app_api_search', methods:['GET'])]
+    public function search(Request $request, SerializerInterface $serializer, MovieRepository $movieRepository): Response
+    {
 
+        $content = $request->query->get('search');
+
+        $movies = $movieRepository->findForSearch($content);
+        $data = $serializer->normalize($movies, null, ['groups' => 'json_movie']);
+        $response = new JsonResponse($data);
+        return $response;
+    }
 }

@@ -36,7 +36,7 @@ export default function Series() {
         return (
             <div key={index}>
                 <h2 className='text-white text-lg font-semibold font-body'>{category}</h2>
-                <ul className='flex gap-2'>
+                <ul className='flex gap-6'>
                     {categoryCards}
                 </ul>
             </div>
