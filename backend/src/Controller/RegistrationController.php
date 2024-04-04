@@ -36,15 +36,29 @@ class RegistrationController extends AbstractController
 
             // do anything else you need here, like send an email
 
-            $cookie = new Cookie(
-                'user_authenticated',
+            $cookieID = new Cookie(
+                'user_authenticated', 
                 $user->getId(), 
-                time() + 3600,
-
+                time() + 3600, 
+                 '/',
+                  '', 
+                  false, 
+                  false
             );
-            $response = new RedirectResponse('http://localhost:8090/registered');
-            $response->headers->setCookie($cookie);
 
+            $cookieEmail = new Cookie(
+                'user_mail', 
+                $user->getUserIdentifier(), 
+                time() + 3600, 
+                '/',
+                  '', 
+                  false, 
+                  false
+            );
+
+            $response = new RedirectResponse('http://localhost:8090/registered');
+            $response->headers->setCookie($cookieID);
+            $response->headers->setCookie($cookieEmail);
             return $response;
         }
 

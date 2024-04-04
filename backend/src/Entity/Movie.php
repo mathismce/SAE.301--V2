@@ -29,7 +29,7 @@ class Movie
     #[ORM\Column(length: 512)]
     private ?string $urlImage = null;
 
-    #[ORM\ManyToOne(inversedBy: 'movies')]
+    #[ORM\ManyToOne(targetEntity: Type::class, inversedBy: 'movies')]
     private ?Type $type = null;
 
 

@@ -6,7 +6,7 @@ export default function Root() {
 
   return (
     <>
-      <section className='flex bg-gradient-to-r from-bg-primary to-bg-secondary w-full min-h-screen'>
+      <section className='flex flex-col bg-gradient-to-r md:flex-row  from-bg-primary to-bg-secondary w-full min-h-screen'>
         <NavBar/>
         <section className='flex flex-col flex-1'>
           <NavBarSecond/>

@@ -16,3 +16,16 @@ export async function fakeNetwork(key) {
     setTimeout(res, Math.random() * 3000);
   });
 }
+
+
+export function getCookie(name) {
+  const cookies = document.cookie.split('; ')
+  console.log(cookies)
+  const value = cookies
+      .find(c => c.startsWith(name + "="))
+      ?.split('=')[1]
+  if (value === undefined) {
+      return null
+  } 
+  return decodeURIComponent(value)
+}

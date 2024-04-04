@@ -31,7 +31,7 @@ export default function SearchContent() {
 
     return (
         <div>
-            <ul className='flex gap-4'>
+            <ul className='flex gap-4 p-4'>
                 {Cards}
             </ul>
         </div>

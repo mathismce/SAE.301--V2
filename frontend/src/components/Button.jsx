@@ -18,6 +18,7 @@ const button = cva(base, {
         "font-bold",
         "hover:bg-button-hover",
         "flex",
+        "flex-row",
         "items-center",
         "gap-2",
         "w-52"

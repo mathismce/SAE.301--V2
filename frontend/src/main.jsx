@@ -7,10 +7,9 @@ import About from './routes/about.jsx';
 import Store, {loader as StoreLoader} from './routes/store.jsx';
 import Movie, {loader as MovieLoader} from './routes/accueil.jsx';
 import OurTeams, {loader as OurTeamsLoader} from './routes/ourteams.jsx';
-import Type, {loader as TypeLoader} from './routes/films.jsx';
+import Films, {loader as FilmsLoader} from './routes/films.jsx';
 import Series, {loader as SeriesLoader} from './routes/series.jsx';
 import SearchContent, {loader as SearchContentLoader} from './routes/searchContent.jsx';
-import Login from './routes/login.jsx';
 import Registered from './routes/registered.jsx';
 import ErrorPage from './ui/ErrorPage'
 
@@ -42,8 +41,8 @@ const router = createBrowserRouter([
         },
         {
           path: '/type/films',
-          element: <Type />,
-          loader: TypeLoader,
+          element: <Films />,
+          loader: FilmsLoader,
           
         },
         {
@@ -61,10 +60,6 @@ const router = createBrowserRouter([
           path: '/search/:searchTerm',
           element: <SearchContent />,
           loader: SearchContentLoader,
-        },
-        {
-          path: '/login',
-          element: <Login />
         },
         {
           path: '/registered',

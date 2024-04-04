@@ -50,16 +50,30 @@ class SecurityController extends AbstractController
         if ($this->isGranted('ROLE_USER')) {
             $user = $token->getUser();
 
-            $cookie = new Cookie(
+            $cookieID = new Cookie(
                 'user_authenticated', 
                 $user->getId(), 
                 time() + 3600, 
-                );
+                 '/',
+                  '', 
+                  false, 
+                  false
+            );
+
+            $cookieEmail = new Cookie(
+                'user_mail', 
+                $user->getUserIdentifier(), 
+                time() + 3600, 
+                '/',
+                  '', 
+                  false, 
+                  false
+            );
 
             // Créer une réponse de redirection avec le cookie
             $response = new RedirectResponse('http://localhost:8090/registered');
-            $response->headers->setCookie($cookie);
-
+            $response->headers->setCookie($cookieID);
+            $response->headers->setCookie($cookieEmail);
             return $response;
         }
 
@@ -77,4 +91,15 @@ class SecurityController extends AbstractController
         // Il suffit de définir la route de déconnexion dans votre fichier security.yaml.
         throw new \LogicException('This method should not be reached.');
     }
+
+    #[Route(path: '/logged-out', name: 'app_logged-out')]
+    public function loggedOut(): Response
+    {
+        $response = new RedirectResponse('http://localhost:8090');
+        $response->headers->clearCookie('user_authenticated');
+        $response->headers->clearCookie('user_mail');
+    
+        return $response;
+    }
+    
 }
