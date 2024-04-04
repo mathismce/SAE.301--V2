@@ -6,6 +6,8 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -34,7 +36,16 @@ class RegistrationController extends AbstractController
 
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('http://localhost:8090');
+            $cookie = new Cookie(
+                'user_authenticated',
+                $user->getId(), 
+                time() + 3600,
+
+            );
+            $response = new RedirectResponse('http://localhost:8090/registered');
+            $response->headers->setCookie($cookie);
+
+            return $response;
         }
 
         return $this->render('registration/register.html.twig', [

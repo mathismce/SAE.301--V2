@@ -19,6 +19,7 @@ security:
             form_login:
                 login_path: app_login
                 check_path: app_login
+                default_target_path: http://localhost:8080/logged # Spécifiez ici l'URL de redirection après la connexion réussie
                 enable_csrf: true
             logout:
                 path: app_logout

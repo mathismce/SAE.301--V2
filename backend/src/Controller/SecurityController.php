@@ -2,11 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class SecurityController extends AbstractController
 {
@@ -19,37 +23,58 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
+        // // If login successful, create a cookie
+        // if ($this->getUser()) {
+        //     $user = $this->getUser();
+        //     $cookie = new Cookie(
+        //         'user_authenticated',
+        //         $user->getId(),
+        //         time() + 3600 
+        //     );
+
+        //     $response = new RedirectResponse('http://localhost:8090/registered');
+        //     $response->headers->setCookie($cookie);
+
+        //     return $response;
+        // }
+
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
         ]);
     }
 
-    // #[Route(path: '/login', name: 'app_login')]
-    // public function login(AuthenticationUtils $authenticationUtils, Request $request): Response
-    // {
-    //     $username = $request->request->get('username');
-    //     $password = $request->request->get('password');
+    #[Route(path: '/logged', name: 'app_logged')]
+    public function logged(TokenInterface $token): Response
+    {
+        if ($this->isGranted('ROLE_USER')) {
+            $user = $token->getUser();
 
-    //     // Vous pouvez maintenant utiliser $username et $password pour effectuer l'authentification
+            $cookie = new Cookie(
+                'user_authenticated', 
+                $user->getId(), 
+                time() + 3600, 
+                );
 
-    //     // Exemple de vérification simplifiée
-    //     if ($username === 'admin' && $password === 'password') {
-    //         // Authentification réussie
-    //         // Rediriger l'utilisateur vers une autre page, par exemple
-    //         return $this->redirectToRoute('dashboard');
-    //     } else {
-    //         // Authentification échouée
-    //         // Réafficher la page de connexion avec un message d'erreur
-    //         return $this->redirectToRoute('app_login', [
-    //             'error' => 'Identifiants invalides'
-    //         ]);
-    //     }
-    // }
+            // Créer une réponse de redirection avec le cookie
+            $response = new RedirectResponse('http://localhost:8090/registered');
+            $response->headers->setCookie($cookie);
+
+            return $response;
+        }
+
+        $response = new RedirectResponse('http://localhost:8080/login');
+
+        return $response;
+    }
 
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        // Cette méthode peut être vide car la déconnexion sera gérée par Symfony.
+        // Symfony interceptera cette route et effectuera la déconnexion automatiquement.
+        // Il n'est pas nécessaire d'ajouter du code ici.
+        // Il suffit de définir la route de déconnexion dans votre fichier security.yaml.
+        throw new \LogicException('This method should not be reached.');
     }
 }

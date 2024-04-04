@@ -11,7 +11,7 @@ import Type, {loader as TypeLoader} from './routes/films.jsx';
 import Series, {loader as SeriesLoader} from './routes/series.jsx';
 import SearchContent, {loader as SearchContentLoader} from './routes/searchContent.jsx';
 import Login from './routes/login.jsx';
-
+import Registered from './routes/registered.jsx';
 import ErrorPage from './ui/ErrorPage'
 
 import { Suspense } from 'react';
@@ -65,6 +65,10 @@ const router = createBrowserRouter([
         {
           path: '/login',
           element: <Login />
+        },
+        {
+          path: '/registered',
+          element: <Registered />
         },
     ]
   },
