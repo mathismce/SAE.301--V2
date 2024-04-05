@@ -20,7 +20,6 @@ export async function fakeNetwork(key) {
 
 export function getCookie(name) {
   const cookies = document.cookie.split('; ')
-  console.log(cookies)
   const value = cookies
       .find(c => c.startsWith(name + "="))
       ?.split('=')[1]

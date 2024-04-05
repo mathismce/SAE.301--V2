@@ -1,6 +1,7 @@
 import { fetchMovieBySearch } from '../lib/loaders';
 import CardMovie from '../ui/CardMovie/Card';
 import { useLoaderData } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export async function loader({ params }) {
     let movieData = await fetchMovieBySearch(params.searchTerm);
@@ -8,6 +9,18 @@ export async function loader({ params }) {
 }
 
 export default function SearchContent() {
+
+    const navigate = useNavigate();
+
+    const handleCardClick = (cardData) => {
+        // Naviguer vers la page d'informations avec les données de la carte sélectionnée
+        // Assurez-vous que votre route est correctement configurée pour accepter les paramètres, par exemple : `/movie/:id`
+        const url = `/movie/${cardData.id}?name=${encodeURIComponent(cardData.name)}&urlImage=${encodeURIComponent(cardData.urlImage)}&category=${encodeURIComponent(cardData.category[0].name)}`;
+        console.log(url);
+        navigate(url);
+    };
+
+
     const data = useLoaderData();
     console.log(data)
 
@@ -25,6 +38,7 @@ export default function SearchContent() {
                 name={card.name}
                 urlImage={card.urlImage}
                 category={card.category[0].name}
+                onClick={() => handleCardClick(card)}
             />
         </li>
     ));

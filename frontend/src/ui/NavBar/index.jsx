@@ -29,7 +29,7 @@ export default function NavBar() {
 
       <div className="flex md:flex-col justify-items-start gap-4">
         <Link className={`text-nav-bar-text text-base font-semibold hover:text-nav-bar-text-focus focus:nav-bar-text-focus ${isClicked ? 'text-yellow-500' : ''}`} to="/movie">Accueil </Link>
-        <Link className="text-nav-bar-text text-base font-semibold hover:text-nav-bar-text-focus focus:nav-bar-text-focus" to="/team/sales">Chaînes</Link>
+        <Link className="text-nav-bar-text text-base font-semibold hover:text-nav-bar-text-focus focus:nav-bar-text-focus">Chaînes</Link>
         <Link className="text-nav-bar-text text-base font-semibold hover:text-nav-bar-text-focus focus:nav-bar-text-focus" to="/type/films">Films</Link>
         <Link className="text-nav-bar-text text-base font-semibold hover:text-nav-bar-text-focus focus:nav-bar-text-focus" to="/type/series">Series</Link>
       </div>

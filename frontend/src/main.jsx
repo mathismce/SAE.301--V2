@@ -29,18 +29,6 @@ const router = createBrowserRouter([
     errorElement:<ErrorPage />,
     children: [
         {
-          path: '/buy',
-          element: <Store />,
-          loader: StoreLoader,
-        },
-        {
-          path: '/team/:teamName',
-          element: <Suspense fallback={<Loading />}>
-          <OurTeams />
-        </Suspense>,
-          loader: OurTeamsLoader,
-        },
-        {
           path: '/type/films',
           element: <Films />,
           loader: FilmsLoader,
