@@ -1,6 +1,6 @@
 
 import { cva } from "class-variance-authority";
-import {Like} from "../libs/Icons";
+import {Cross, Like} from "../libs/Icons";
 
 
 
@@ -45,7 +45,7 @@ const button = cva(base, {
         "w-fit",
         "border",
         "border-slate-600",
-        "w-4",
+        "w-3",
         "h-10"
 
       ],
@@ -65,7 +65,7 @@ const button = cva(base, {
 
 export default function ButtonSquare({ intent, size, className, ...rest }) {
   return <button {...rest} className={button({ intent, size, className })} >
-    <Like className="text-white group-hover:text-button-square-hover w-5"/>
+    <Cross className="text-white group-hover:text-button-square-hover w-5"/>
   </button>
   ;
 }
