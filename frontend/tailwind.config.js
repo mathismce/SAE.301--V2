@@ -19,7 +19,7 @@ export default {
         "search-bar-bg-focus" : "var(--primary-gray)",
         "nav-bar-text" : "var(--tertiary-gray)",
         "nav-bar-text-focus" : "var(--primary-white)",
-
+        "title" : "var(--primary-yellow)",
             }
     },
     fontFamily: {

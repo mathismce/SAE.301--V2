@@ -3,8 +3,8 @@ import CardMovie from '../ui/CardMovie/Card';
 import { useLoaderData } from 'react-router-dom';
 
 export async function loader({ params }) {
-    let movieByTypeData = await fetchMovieBySearch(params.searchTerm);
-    return movieByTypeData;
+    let movieData = await fetchMovieBySearch(params.searchTerm);
+    return movieData;
 }
 
 export default function SearchContent() {
@@ -29,6 +29,7 @@ export default function SearchContent() {
         </li>
     ));
 
+    
     return (
         <div>
             <ul className='flex gap-4 p-4'>

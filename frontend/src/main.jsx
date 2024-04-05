@@ -11,6 +11,7 @@ import Films, {loader as FilmsLoader} from './routes/films.jsx';
 import Series, {loader as SeriesLoader} from './routes/series.jsx';
 import SearchContent, {loader as SearchContentLoader} from './routes/searchContent.jsx';
 import Registered from './routes/registered.jsx';
+import Infos from './routes/infos.jsx';
 import ErrorPage from './ui/ErrorPage'
 
 import { Suspense } from 'react';
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
         {
           path: '/registered',
           element: <Registered />
+        },
+        {
+          path: '/movie/:id',
+          element: <Infos/>
         },
     ]
   },
